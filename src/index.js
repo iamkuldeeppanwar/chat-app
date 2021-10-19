@@ -6,7 +6,7 @@ const server = http.createServer(app);
 // const io = socket(server);.
 const io = require("socket.io")(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "https://serene-bhaskara-7a9d01.netlify.app",
     methodhs: ["GET", "POST"],
   },
 });
