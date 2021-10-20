@@ -3,10 +3,11 @@ const http = require("http");
 const app = express();
 const server = http.createServer(app);
 // const socket = require("socket.io");
-// const io = socket(server);.
+// const io = socket(server);
+
 const io = require("socket.io")(server, {
   cors: {
-    origin: "https://serene-bhaskara-7a9d01.netlify.app",
+    origin: "https://hopeful-payne-6498d9.netlify.app",
     methodhs: ["GET", "POST"],
   },
 });
@@ -15,7 +16,7 @@ io.on("connection", (socket) => {
   socket.emit("me", socket.id);
 
   socket.on("disconnect", () => {
-    socket.broadcast.emit("call ended");
+    socket.broadcast.emit("callEnded");
   });
 
   socket.on("callUser", (data) => {
@@ -26,9 +27,11 @@ io.on("connection", (socket) => {
     });
   });
 
-  socket.on("answerCall", (data) => {
-    io.to(data.to).emit("callAccept");
-  });
+  socket.on(
+    "answerCall",
+    (data) => io.to(data.to).emit("callAccept"),
+    data.signal
+  );
 });
 
 // io.on("connection", (socket) => {
