@@ -5,11 +5,9 @@ const server = http.createServer(app);
 // const socket = require("socket.io");
 // const io = socket(server);
 
-// https://live-kuldeep-chat.herokuapp.com/
-
 const io = require("socket.io")(server, {
   cors: {
-    origin: "https://hopeful-payne-6498d9.netlify.app",
+    origin: "https://optimistic-colden-10b6c1.netlify.app",
     methods: ["GET", "POST"],
   },
 });
