@@ -8,7 +8,7 @@ const server = http.createServer(app);
 const io = require("socket.io")(server, {
   cors: {
     origin: "https://hopeful-payne-6498d9.netlify.app",
-    methodhs: ["GET", "POST"],
+    methods: ["GET", "POST"],
   },
 });
 
