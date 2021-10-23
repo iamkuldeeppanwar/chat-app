@@ -7,7 +7,7 @@ const users = [{}];
 
 const io = require("socket.io")(server, {
   cors: {
-    origin: "https://modest-kowalevski-4727ca.netlify.app",
+    origin: "https://nervous-tesla-1ff2b8.netlify.app",
     methods: ["GET", "POST"],
   },
 });
