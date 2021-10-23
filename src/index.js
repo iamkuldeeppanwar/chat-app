@@ -2,14 +2,12 @@ const express = require("express");
 const http = require("http");
 const app = express();
 const server = http.createServer(app);
-// const socket = require("socket.io");
-// const io = socket(server);
-// const cors = require("cors");
 
-// app.use(cors());
+const users = [{}];
+
 const io = require("socket.io")(server, {
   cors: {
-    origin: "https://optimistic-colden-10b6c1.netlify.app",
+    origin: "https://modest-kowalevski-4727ca.netlify.app",
     methods: ["GET", "POST"],
   },
 });
@@ -32,11 +30,11 @@ io.on("connection", (socket) => {
   socket.on("answerCall", (data) => {
     io.to(data.to).emit("callAccepted", data.signal);
   });
-});
 
-// io.on("connection", (socket) => {
-//   console.log(socket.id);
-// });
+  socket.on("message", ({ message, id }) => {
+    io.emit("sendMessage", { name: users[id], message, id });
+  });
+});
 
 const port = process.env.PORT || 4000;
 server.listen(port, () => {
